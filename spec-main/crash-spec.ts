@@ -12,9 +12,11 @@ const runFixtureAndEnsureCleanExit = (args: string[]) => {
   const child = cp.spawn(process.execPath, args);
   children.push(child);
   child.stdout.on('data', (chunk: Buffer) => {
+    console.log(chunk.toString());
     out += chunk.toString();
   });
   child.stderr.on('data', (chunk: Buffer) => {
+    console.log(chunk.toString());
     out += chunk.toString();
   });
   return new Promise<void>((resolve) => {
